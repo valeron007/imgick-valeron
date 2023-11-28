@@ -3,16 +3,19 @@ require_once __DIR__.'/vendor/autoload.php';
 
 
 try {
-    $coomandLine = new app\CommandLine($argv);
+    $coomandLine = new app\CommandLine(array_slice($argv, 1));
     $coomandLine->validate();
-    printf("Count arg:%d\n", count($argv));
+    $image = new \Imagick('./images/2.jpeg');
+    $filter_apply = new \app\FilterApply($image);
+    $filter_apply->applyFilter($coomandLine->getParameters());
+    $filter_apply->saveImage();
 
 } catch (Exception $e) {
     print($e->getMessage());
 }
 
 /*
-$image = new \Imagick('./images/2.jpeg');
+
 
 print($image->getImageSize() . PHP_EOL);
 

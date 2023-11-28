@@ -19,7 +19,7 @@ class ScaleTransform extends ImageTransform
      * @return void
      * @throws \ImagickException
      */
-    function apply(Imagick $image)
+    public function apply(Imagick $image): void
     {
         $image->scaleImage($this->cols, $this->rows);
     }
